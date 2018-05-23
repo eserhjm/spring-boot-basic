@@ -46,7 +46,8 @@ pipeline {
         stage('Deploy Test') {
             steps {
                 withCredentials([sshUserPrivateKey(credentialsId: "training_pem", keyFileVariable: 'keyfile')]) {
-                    sh "ssh -i $keyfile ubuntu@172.31.12.139 'wget http://ec2-52-80-133-153.cn-north-1.compute.amazonaws.com.cn:8899/version'"
+                    sh 'sleep 10'
+                    sh 'curl 172.31.12.139:8899/version'
                 }
             }
         }
